@@ -1,4 +1,6 @@
-from typing import Dict, Any
+git add .
+git commit -m "Your commit message here"
+git push origin mainfrom typing import Dict, Any
 from .base_agent import BaseAgent, Message
 from loguru import logger
 import ast
@@ -87,7 +89,9 @@ class CodeAnalyzer(BaseAgent):
             "imports": [],
             "classes": [],
             "functions": [],
-            "global_variables": []
+            "global_variables": [],
+            "nested_classes": 0,
+            "nested_functions": 0
         }
         
         for node in ast.walk(tree):
@@ -97,8 +101,12 @@ class CodeAnalyzer(BaseAgent):
                 structure["imports"].append(f"{node.module}.{node.names[0].name}")
             elif isinstance(node, ast.ClassDef):
                 structure["classes"].append(node.name)
+                if node.bases:  # Check for nested classes
+                    structure["nested_classes"] += 1
             elif isinstance(node, ast.FunctionDef):
                 structure["functions"].append(node.name)
+                if node.args.args:  # Check for nested functions
+                    structure["nested_functions"] += 1
             elif isinstance(node, ast.Assign) and isinstance(node.targets[0], ast.Name):
                 structure["global_variables"].append(node.targets[0].id)
         

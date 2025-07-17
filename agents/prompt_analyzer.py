@@ -6,7 +6,7 @@ class PromptAnalyzer:
         self.file_pattern = re.compile(r'<file>.*?</file>', re.DOTALL)
         
     def extract_file_blocks(self, content: str) -> List[Tuple[str, str]]:
-        """Extract file blocks from content"""
+        """Extract file blocks from content."""
         matches = self.file_pattern.findall(content)
         blocks = []
         for match in matches:

@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"CodeGPT.apiKey": "CodeGPT Plus Beta",
+		"zencoder.enableRepoIndexing": true,
+		"gitConfigUser.selectedProfile": "Aaron Weston",
+		"files.autoSave": "afterDelay"
+	}
+}
